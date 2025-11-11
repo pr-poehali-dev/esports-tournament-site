@@ -56,6 +56,14 @@ const Index = () => {
       status: 'upcoming',
       round: 'Четвертьфинал',
       time: '18:00'
+    },
+    {
+      id: '4',
+      team1: { id: 't7', name: '2Play', logo: '🎯' },
+      team2: { id: 't8', name: 'R4ZE', logo: '⚔️' },
+      status: 'upcoming',
+      round: 'Групповой этап',
+      time: 'Завтра 19:30'
     }
   ]);
 
@@ -94,7 +102,8 @@ const Index = () => {
     { rank: 2, name: 'Navi', points: 2380, trend: 'up' },
     { rank: 3, name: 'FaZe Clan', points: 2210, trend: 'down' },
     { rank: 4, name: 'G2 Esports', points: 2180, trend: 'up' },
-    { rank: 5, name: 'Fnatic', points: 2050, trend: 'same' }
+    { rank: 5, name: '2Play', points: 2070, trend: 'up' },
+    { rank: 6, name: 'Fnatic', points: 2050, trend: 'same' }
   ]);
 
   useEffect(() => {
