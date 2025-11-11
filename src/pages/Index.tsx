@@ -40,6 +40,22 @@ const Index = () => {
       status: 'upcoming',
       round: 'Групповой этап',
       time: 'Завтра 19:30'
+    },
+    {
+      id: '2',
+      team1: { id: 't9', name: 'Yoko Team', logo: '🐉' },
+      team2: { id: 't10', name: 'Sokratis2018', logo: '🛡️' },
+      status: 'upcoming',
+      round: 'Групповой этап',
+      time: 'Завтра 19:30'
+    },
+    {
+      id: '3',
+      team1: { id: 't11', name: 'Alma3ik', logo: '💎' },
+      team2: { id: 't12', name: 'Speans Team', logo: '⚡' },
+      status: 'upcoming',
+      round: 'Групповой этап',
+      time: 'Завтра 19:30'
     }
   ]);
 
@@ -56,12 +72,13 @@ const Index = () => {
   ]);
 
   const [topTeams] = useState([
-    { rank: 1, name: 'Team Liquid', points: 2450, trend: 'up' },
-    { rank: 2, name: 'Navi', points: 2380, trend: 'up' },
-    { rank: 3, name: 'FaZe Clan', points: 2210, trend: 'down' },
-    { rank: 4, name: 'G2 Esports', points: 2180, trend: 'up' },
-    { rank: 5, name: '2Play', points: 2070, trend: 'up' },
-    { rank: 6, name: 'Fnatic', points: 2050, trend: 'same' }
+    { rank: 1, name: 'Sokratis2018', points: 3, matches: 1, wins: 1, losses: 0, diff: '+1', trend: 'up' },
+    { rank: 2, name: 'Yoko Team', points: 3, matches: 1, wins: 1, losses: 0, diff: '+1', trend: 'up' },
+    { rank: 3, name: '2Play', points: 3, matches: 1, wins: 1, losses: 0, diff: '+1', trend: 'up' },
+    { rank: 4, name: 'R4ZE', points: 3, matches: 1, wins: 1, losses: 0, diff: '+1', trend: 'up' },
+    { rank: 5, name: 'Pulse Esports', points: 0, matches: 1, wins: 0, losses: 1, diff: '-1', trend: 'down' },
+    { rank: 6, name: 'Speans Team', points: 0, matches: 1, wins: 0, losses: 1, diff: '-1', trend: 'down' },
+    { rank: 7, name: 'Alma3ik', points: 0, matches: 1, wins: 0, losses: 1, diff: '-1', trend: 'down' }
   ]);
 
   useEffect(() => {
@@ -264,33 +281,47 @@ const Index = () => {
             <h3 className="text-3xl font-bold mb-6">Топ команд</h3>
             <Card className="border-border">
               <CardContent className="p-6">
-                <div className="space-y-4">
-                  {topTeams.map((team) => (
-                    <div 
-                      key={team.rank}
-                      className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className={`
-                          text-2xl font-bold w-10 h-10 rounded-full flex items-center justify-center
-                          ${team.rank === 1 ? 'bg-primary/20 text-primary neon-border' : 
-                            team.rank === 2 ? 'bg-secondary/20 text-secondary' : 
-                            'bg-accent/20 text-accent'}
-                        `}>
-                          {team.rank}
-                        </div>
-                        <div>
-                          <div className="font-semibold">{team.name}</div>
-                          <div className="text-sm text-muted-foreground">{team.points} pts</div>
-                        </div>
-                      </div>
-                      <div>
-                        {team.trend === 'up' && <Icon name="TrendingUp" size={20} className="text-primary" />}
-                        {team.trend === 'down' && <Icon name="TrendingDown" size={20} className="text-destructive" />}
-                        {team.trend === 'same' && <Icon name="Minus" size={20} className="text-muted-foreground" />}
-                      </div>
-                    </div>
-                  ))}
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left p-2 text-sm font-semibold">#</th>
+                        <th className="text-left p-2 text-sm font-semibold">Команда</th>
+                        <th className="text-center p-2 text-sm font-semibold">Матчи</th>
+                        <th className="text-center p-2 text-sm font-semibold">Победа</th>
+                        <th className="text-center p-2 text-sm font-semibold">Проигрыш</th>
+                        <th className="text-center p-2 text-sm font-semibold">+/-</th>
+                        <th className="text-center p-2 text-sm font-semibold">Очки</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {topTeams.map((team) => (
+                        <tr 
+                          key={team.rank}
+                          className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                        >
+                          <td className="p-3">
+                            <div className={`
+                              text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center
+                              ${team.rank === 1 ? 'bg-primary/20 text-primary' : 
+                                team.rank === 2 ? 'bg-secondary/20 text-secondary' : 
+                                team.rank === 3 ? 'bg-accent/20 text-accent' : 'text-foreground'}
+                            `}>
+                              {team.rank}
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">{team.name}</td>
+                          <td className="p-3 text-center">{team.matches}</td>
+                          <td className="p-3 text-center">{team.wins}</td>
+                          <td className="p-3 text-center">{team.losses}</td>
+                          <td className={`p-3 text-center font-semibold ${team.diff.startsWith('+') ? 'text-primary' : 'text-destructive'}`}>
+                            {team.diff}
+                          </td>
+                          <td className="p-3 text-center font-bold text-primary">{team.points} т</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </CardContent>
             </Card>
@@ -311,7 +342,7 @@ const Index = () => {
         </div>
 
         <section>
-          <h3 className="text-3xl font-bold mb-6">Турнирная сетка - Cyber Champions League</h3>
+          <h3 className="text-3xl font-bold mb-6">Турнирная сетка - MLT League 2 season</h3>
           <Card className="border-primary/30">
             <CardContent className="p-8">
               <Tabs defaultValue="bracket" className="w-full">
@@ -322,67 +353,113 @@ const Index = () => {
                 </TabsList>
                 
                 <TabsContent value="bracket" className="space-y-8">
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="space-y-4">
-                      <h4 className="text-center font-bold text-lg text-primary mb-6">Четвертьфиналы</h4>
-                      {[
-                        { t1: 'Team Liquid 🌊', t2: 'Fnatic 🦊', score1: 2, score2: 0 },
-                        { t1: 'Navi ⚡', t2: 'Cloud9 ☁️', score1: 2, score2: 1 },
-                        { t1: 'FaZe Clan 🔥', t2: 'Astralis 🌟', score1: 2, score2: 0 },
-                        { t1: 'G2 Esports ⭐', t2: 'Vitality 🐝', score1: 2, score2: 1 }
-                      ].map((match, i) => (
-                        <div key={i} className="bg-muted/50 rounded-lg p-4 space-y-2 border border-border">
-                          <div className="flex justify-between items-center">
-                            <span className="font-semibold">{match.t1}</span>
-                            <span className="font-bold text-primary">{match.score1}</span>
-                          </div>
-                          <div className="h-px bg-border" />
-                          <div className="flex justify-between items-center">
-                            <span className="font-semibold">{match.t2}</span>
-                            <span className="font-bold">{match.score2}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="text-center font-bold text-lg text-secondary mb-6">Полуфиналы</h4>
-                      <div className="mt-12 space-y-8">
-                        {[
-                          { t1: 'Team Liquid 🌊', t2: 'Navi ⚡', score1: 2, score2: 1, live: true },
-                          { t1: 'FaZe Clan 🔥', t2: 'G2 Esports ⭐', score1: 1, score2: 1, live: true }
-                        ].map((match, i) => (
-                          <div key={i} className="bg-muted/50 rounded-lg p-4 space-y-2 border-2 border-primary/50 neon-border relative">
-                            {match.live && (
-                              <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary">
-                                <span className="live-pulse mr-1">●</span> LIVE
-                              </Badge>
-                            )}
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold">{match.t1}</span>
-                              <span className="font-bold text-primary">{match.score1}</span>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b-2 border-primary/30">
+                          <th className="text-left p-3 text-sm font-bold">#</th>
+                          <th className="text-left p-3 text-sm font-bold">Команда</th>
+                          <th className="text-center p-3 text-sm font-bold">Матчи</th>
+                          <th className="text-center p-3 text-sm font-bold">Победа</th>
+                          <th className="text-center p-3 text-sm font-bold">Проигрыш</th>
+                          <th className="text-center p-3 text-sm font-bold">+/-</th>
+                          <th className="text-center p-3 text-sm font-bold">Очки</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center bg-primary/20 text-primary">
+                              1
                             </div>
-                            <div className="h-px bg-border" />
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold">{match.t2}</span>
-                              <span className="font-bold">{match.score2}</span>
+                          </td>
+                          <td className="p-3 font-semibold">team_Sokratis2018</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center font-semibold text-primary">+1</td>
+                          <td className="p-3 text-center font-bold text-primary">3 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center bg-secondary/20 text-secondary">
+                              2
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="text-center font-bold text-lg text-accent mb-6">Финал</h4>
-                      <div className="mt-24">
-                        <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg p-6 border-2 border-primary/30 text-center">
-                          <Icon name="Trophy" size={48} className="mx-auto mb-4 text-primary" />
-                          <p className="text-muted-foreground mb-2">Финал состоится</p>
-                          <p className="font-bold text-lg">12 ноября 2025</p>
-                          <p className="text-sm text-muted-foreground mt-2">20:00 МСК</p>
-                        </div>
-                      </div>
-                    </div>
+                          </td>
+                          <td className="p-3 font-semibold">Yoko Team</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center font-semibold text-primary">+1</td>
+                          <td className="p-3 text-center font-bold text-primary">3 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center bg-accent/20 text-accent">
+                              3
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">2play</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center font-semibold text-primary">+1</td>
+                          <td className="p-3 text-center font-bold text-primary">3 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center text-foreground">
+                              4
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">RAZE</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center font-semibold text-primary">+1</td>
+                          <td className="p-3 text-center font-bold text-primary">3 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center text-foreground">
+                              5
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">Pulse Esports</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center font-semibold text-destructive">-1</td>
+                          <td className="p-3 text-center font-bold text-primary">0 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center text-foreground">
+                              6
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">Speans team</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center font-semibold text-destructive">-1</td>
+                          <td className="p-3 text-center font-bold text-primary">0 т</td>
+                        </tr>
+                        <tr className="border-b border-border hover:bg-muted/30 transition-colors">
+                          <td className="p-3">
+                            <div className="text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center text-foreground">
+                              7
+                            </div>
+                          </td>
+                          <td className="p-3 font-semibold">team_Alma3ik</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center">0</td>
+                          <td className="p-3 text-center">1</td>
+                          <td className="p-3 text-center font-semibold text-destructive">-1</td>
+                          <td className="p-3 text-center font-bold text-primary">0 т</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </TabsContent>
 
