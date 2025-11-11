@@ -122,8 +122,12 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-3xl">🎮</div>
-              <h1 className="text-2xl font-bold neon-glow">CYBER ARENA</h1>
+              <img 
+                src="https://cdn.poehali.dev/files/50d4a1de-196d-4750-8db8-d4729c62bceb.png" 
+                alt="MLT League Logo" 
+                className="h-12 w-auto"
+              />
+              <h1 className="text-2xl font-bold neon-glow">MLT League</h1>
             </div>
             <nav className="hidden md:flex items-center gap-6">
               {['Турниры', 'Рейтинги', 'Команды', 'Расписание', 'Новости', 'Трансляции'].map(item => (
