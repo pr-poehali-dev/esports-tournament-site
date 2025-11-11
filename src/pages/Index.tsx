@@ -35,30 +35,6 @@ const Index = () => {
   const [matches, setMatches] = useState<Match[]>([
     {
       id: '1',
-      team1: { id: 't1', name: 'Team Liquid', logo: '🌊', score: 2 },
-      team2: { id: 't2', name: 'Navi', logo: '⚡', score: 1 },
-      status: 'live',
-      round: 'Полуфинал',
-      time: '45:23'
-    },
-    {
-      id: '2',
-      team1: { id: 't3', name: 'FaZe Clan', logo: '🔥', score: 1 },
-      team2: { id: 't4', name: 'G2 Esports', logo: '⭐', score: 1 },
-      status: 'live',
-      round: 'Полуфинал',
-      time: '32:15'
-    },
-    {
-      id: '3',
-      team1: { id: 't5', name: 'Fnatic', logo: '🦊' },
-      team2: { id: 't6', name: 'Cloud9', logo: '☁️' },
-      status: 'upcoming',
-      round: 'Четвертьфинал',
-      time: '18:00'
-    },
-    {
-      id: '4',
       team1: { id: 't7', name: '2Play', logo: '🎯' },
       team2: { id: 't8', name: 'R4ZE', logo: '⚔️' },
       status: 'upcoming',
@@ -70,30 +46,12 @@ const Index = () => {
   const [tournaments] = useState<Tournament[]>([
     {
       id: '1',
-      name: 'Cyber Champions League',
+      name: 'MLT League 2 season',
       game: 'CS2',
       prize: '1,000,000₽',
       status: 'live',
       participants: 16,
       startDate: '11 ноября 2025'
-    },
-    {
-      id: '2',
-      name: 'Dota Pro Circuit',
-      game: 'Dota 2',
-      prize: '500,000₽',
-      status: 'live',
-      participants: 8,
-      startDate: '11 ноября 2025'
-    },
-    {
-      id: '3',
-      name: 'Valorant Masters',
-      game: 'Valorant',
-      prize: '750,000₽',
-      status: 'upcoming',
-      participants: 12,
-      startDate: '15 ноября 2025'
     }
   ]);
 
